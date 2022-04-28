@@ -4,7 +4,8 @@
 pip install requests<br>
 pip install pywin32<br><br>
 
-<b>*** Keep boss.py in the same directory you run it from ***</b><br>
+<b>*** Keep boss.py in the same directory you initally run it from ***</b><br>
+<b>*** If using linux set enableTask = False ***</b><br>
   
 <h3>Sample user info:</h3>
 # Student ID<br>
