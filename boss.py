@@ -90,7 +90,19 @@ def taskScheduler():
 	# create new task after deleting previous
 	createTask(root, newTask)
 
+def create_bat():
+	path = rf'"{sys.exec_prefix}\python.exe"'
+	file = rf'"{__file__}"'
+	command = f'{path} {file}'
+	bat = open('boss.bat', 'w')
+	bat.write(command)
+	bat.close
+
 def createTask(root, newTask):
+	# create bat file
+	create_bat()
+
+	# Start creating task
 	print('*** Creating New Scheduler Task ***')
 	# Trigger
 	# year, month, day, hour, min
@@ -113,10 +125,10 @@ def createTask(root, newTask):
 	actionExec = 0
 	action = newTask.Actions.Create(actionExec)
 	action.ID = 'nada'
-	# Find python exec
-	action.Path = rf'"{sys.exec_prefix}\python.exe"'
-	# Find current working directory of boss.py
-	action.Arguments = rf'"{os.getcwd()}\{__file__}"'
+	# Find path of boss.bat
+	action.Path = rf'"{os.getcwd()}\boss.bat"'
+	# No args needed
+	action.Arguments = ''
 
 	# Parameters
 	newTask.RegistrationInfo.Description = 'Boss Auto Registration'
@@ -139,7 +151,7 @@ def main():
 				'tserve_host_code': 'HostZero',
 				'tserve_tiphost_code': 'TipZero',
 				'ConfigName': 'admnmenu',
-				# may need to look at this
+				# adjust for year and quarter
 				'Term': f'20{date[-2:]}{quarter}',
 				'tserve_tip_write':'%7C%7CWID%7CSID%7CPIN%7CTerm%7CConfigName',
 				'tserve_trans_config': 'astulog.cfg',
