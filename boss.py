@@ -86,6 +86,7 @@ def taskScheduler():
 	# create new task if none found
 	except:
 		createTask(root, newTask)
+		return
 	
 	# create new task after deleting previous
 	createTask(root, newTask)
